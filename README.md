@@ -6,16 +6,33 @@ The goal is to contribute to AI-driven dental solutions that improve diagnostic 
 📌 Features
 
 
-
 Preprocessing:
+
+
 1- Normalization
+
+
 2- Data Augmentation
+
+
 Visualization:
+
+
 1- Class distribution plots
+
+
 2-Image samples before and after augmentation
+
+
 Model Training:
+
+
 1- Custom CNN model using TensorFlow 
+
+
 2-Baseline training for performance evaluation
+
+
 
 Here is some image from data:
 ![oc_1214_rotated_270](https://github.com/user-attachments/assets/284aa984-61c7-4d65-972c-9369e2088b0b)
