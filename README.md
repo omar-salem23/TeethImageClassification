@@ -3,8 +3,7 @@
 A project to classify dental images into 7 different categories using computer vision and deep learning.
 The goal is to contribute to AI-driven dental solutions that improve diagnostic accuracy and patient outcomes.
 
-📌 Features
-
+📌 Features:
 Preprocessing:
     Normalization
     Data Augmentation
