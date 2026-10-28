@@ -8,7 +8,7 @@ existing notebook, dataset integrity, and the linked tutorials.
 
 ## What's in the repository
 
-- `classification/`: EfficientNetB0 training and held-out evaluation for the seven
+- `classification/`: MobileNet and EfficientNet training and held-out evaluation for the seven
   class folders: CaS, CoS, Gum, MC, OC, OLP, and OT.
 - `detection/`: setup notes for object detection. It needs images with bounding-box
   annotations before a detector can be trained.
@@ -26,7 +26,7 @@ the numeric image/source ID because the original split reuses IDs across train,
 validation, and test.
 
 ```bash
-python -m pip install -r requirements.txt
+python -m pip install -r requirements-training.txt
 python tools/prepare_teeth_data.py "/path/to/Teeth DataSet.zip"
 python classification/train.py --data data/teeth_clean
 streamlit run app.py
@@ -65,3 +65,17 @@ The app already supports inference for weights placed at
 mask model). Those models cannot be trained from the supplied teeth archive.
 Provide dental box labels and paired dental masks to enable those tracks. The
 Drive videos are tutorials, not labeled training data.
+
+## Publish the Streamlit app
+
+The classifier weights and class names are included in this repository so the
+deployed app can make predictions without the training dataset. On
+[Streamlit Community Cloud](https://share.streamlit.io/), create a new app and
+select this repository, branch `main`, and main file path `app.py`. Keep
+`requirements.txt` as the dependency file, choose Python 3.12 in Advanced
+settings, then deploy. Streamlit will provide a shareable app URL after the first
+build finishes.
+
+The app currently has working classification weights. The bounding-box and
+segmentation choices will show an unavailable-model message until dental box
+annotations and dental masks are supplied and those models are trained.

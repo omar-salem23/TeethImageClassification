@@ -3,9 +3,12 @@ __pycache__/
 .venv/
 venv/
 data/
-models/
 runs/
 *.keras
 *.pt
 *.h5
 .streamlit/secrets.toml
+models/*
+!models/classification.keras
+!models/class_names.json
+!models/classification_metrics.json
