@@ -46,6 +46,18 @@ the source-ID-grouped held-out test set. This is useful for trying the app, but
 the class recalls vary substantially, so do not use its predictions for clinical
 decisions.
 
+### Dataset and prediction examples
+
+The chart shows the prepared training, validation, and test counts for each class.
+
+![Prepared dental dataset counts by class and split](docs/images/dataset_distribution.png)
+
+These held-out examples show one correct prediction per class and two mistakes.
+They illustrate the labels and failure cases; use the aggregate test metrics above
+to judge performance.
+
+![MobileNet predictions on selected held-out dental images](docs/images/test_predictions.jpg)
+
 ## Detection and segmentation
 
 The app already supports inference for weights placed at
