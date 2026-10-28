@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+data/
+models/
+runs/
+*.keras
+*.pt
+*.h5
+.streamlit/secrets.toml

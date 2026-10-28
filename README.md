@@ -1,41 +1,45 @@
-🦷 Teeth Classification
+# Dental image AI
 
-A project to classify dental images into 7 different categories using computer vision and deep learning.
-The goal is to contribute to AI-driven dental solutions that improve diagnostic accuracy and patient outcomes.
+This repository contains three separate computer-vision tracks and a Streamlit
+demo that lets you choose the task. The current `Teeth_Dataset.zip` supports only
+seven-way image classification. It has no bounding boxes or segmentation masks.
+See [`docs/resource_review.md`](docs/resource_review.md) for the review of the
+existing notebook, dataset integrity, and the linked tutorials.
 
-📌 Features
+## What's in the repository
 
+- `classification/`: EfficientNetB0 training and held-out evaluation for the seven
+  class folders: CaS, CoS, Gum, MC, OC, OLP, and OT.
+- `detection/`: setup notes for object detection. It needs images with bounding-box
+  annotations before a detector can be trained.
+- `segmentation/`: setup notes for segmentation. It needs paired dental images and
+  masks. The linked U-Net notebook points to an **eye** dataset, so those weights
+  would not be suitable for dental images.
+- `app.py`: upload an image and select classification, bounding-box detection, or
+  segmentation. It shows a clear message when weights for a task are unavailable.
 
-Preprocessing:
+## Prepare and train classification
 
+Install dependencies and prepare the dataset archive. The preparation script
+ignores output folders accidentally included in the ZIP and makes a new split by
+the numeric image/source ID because the original split reuses IDs across train,
+validation, and test.
 
-1- Normalization
+```bash
+python -m pip install -r requirements.txt
+python tools/prepare_teeth_data.py "/path/to/Teeth DataSet.zip"
+python classification/train.py --data data/teeth_clean
+streamlit run app.py
+```
 
+The best classifier is saved as `models/classification.keras`. The metrics and
+confusion matrix are saved next to it. The classifier is an experimental
+educational model, not a diagnostic tool.
 
-2- Data Augmentation
+## Detection and segmentation
 
-
-Visualization:
-
-
-1- Class distribution plots
-
-
-2-Image samples before and after augmentation
-
-
-Model Training:
-
-
-1- Custom CNN model using TensorFlow 
-
-
-2-Baseline training for performance evaluation
-
-
-
-Here is some image from data:
-
-
-![oc_1214_rotated_270](https://github.com/user-attachments/assets/284aa984-61c7-4d65-972c-9369e2088b0b)
-![p_1226_rotated_90](https://github.com/user-attachments/assets/1adb37f4-623e-4561-aeeb-efce087c6658)
+The app already supports inference for weights placed at
+`models/detection.pt` (Ultralytics) and `models/segmentation.keras` (binary Keras
+mask model). Those models cannot be trained from the supplied teeth archive.
+Provide dental box labels and paired dental masks to enable those tracks. The
+Drive videos are tutorials, not labeled training data.
