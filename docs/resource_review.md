@@ -19,6 +19,13 @@ into evaluation. The new preparation script instead groups by the numeric ID and
 creates new stratified train/validation/test groups with zero ID overlap. This is
 a safer estimate, though filename grouping cannot prove true patient identity.
 
+The first CPU-only run with a randomly initialized CNN reached 36.9% accuracy on
+the grouped held-out test set. A pretrained MobileNet transfer-learning model
+then reached 57.0% accuracy and 0.545 macro F1 on the same 1,040-image grouped
+test set. Its per-class recall ranges from 0.20 to 0.99, so performance is uneven
+and it remains an experiment rather than a reliable diagnostic classifier. The
+model uses best validation-loss checkpointing and early stopping.
+
 ## Videos and notebook links
 
 - The Object Detection folder is accessible and contains two lecture videos. They

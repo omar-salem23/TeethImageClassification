@@ -38,7 +38,8 @@ if uploaded:
 
                 model = tf.keras.models.load_model(model_path, compile=False)
                 names = json.loads(CLASS_NAMES_PATH.read_text(encoding="utf-8"))
-                sample = image.resize((224, 224))
+                height, width = model.input_shape[1:3]
+                sample = image.resize((width, height))
                 x = np.asarray(sample, dtype=np.float32)[None, ...]
                 scores = model.predict(x, verbose=0)[0]
                 order = np.argsort(scores)[::-1]

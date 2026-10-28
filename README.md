@@ -32,9 +32,19 @@ python classification/train.py --data data/teeth_clean
 streamlit run app.py
 ```
 
+The default uses an ImageNet-pretrained MobileNet checkpoint from the GitHub
+release linked in the training script. If you have access to Keras model hosting,
+you can choose `--weights imagenet` for EfficientNetB0. For an offline run, use
+`--weights none`; this uses a smaller CNN trained from scratch at 128×128.
+
 The best classifier is saved as `models/classification.keras`. The metrics and
 confusion matrix are saved next to it. The classifier is an experimental
 educational model, not a diagnostic tool.
+
+The current CPU-trained MobileNet scores 57.0% accuracy and 0.545 macro F1 on
+the source-ID-grouped held-out test set. This is useful for trying the app, but
+the class recalls vary substantially, so do not use its predictions for clinical
+decisions.
 
 ## Detection and segmentation
 
